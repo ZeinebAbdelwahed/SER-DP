@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+venv/
+.env
+
+# Data & models (à charger depuis GCS)
+models/
+RAVDESS/
+histories/
+predictions/
+preprocessed/
+*.npz
+*.csv
+
+# Notebooks
+*.ipynb
+
+# Node
+backend/node_modules/
+frontend/node_modules/
+backend/dist/
+
+# Git
+.git/

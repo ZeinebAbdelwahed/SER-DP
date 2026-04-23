@@ -17,7 +17,7 @@ LABELS = ['angry', 'calm', 'disgust', 'fearful', 'happy', 'neutral', 'sad', 'sur
 NUM_CLASSES = len(LABELS)
 SR = 16000
 MAX_LENGTH = 48000          # 3 secondes @ 16 kHz
-MODEL_PATH = 'models/wav2vec2_best.pth'
+MODEL_PATH = os.environ.get('MODEL_PATH', 'models/wav2vec2_best.pth')
 
 # ── Architecture (identique à 03_Training.ipynb) ─────────────────────────────
 class Wav2Vec2ForSER(nn.Module):
