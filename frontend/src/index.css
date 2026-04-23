@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: radial-gradient(circle at 15% 10%, rgba(14,165,233,0.12) 0%, transparent 35%),
+              radial-gradient(circle at 85% 90%, rgba(20,184,166,0.10) 0%, transparent 35%),
+              #f0f9ff;
+  color: #0f172a;
+}
+
+@layer components {
+  .btn-primary  { @apply bg-sky-500 hover:bg-sky-600 active:bg-sky-700 text-white font-semibold py-2 px-4 rounded-xl transition-colors disabled:opacity-50 shadow-sm; }
+  .btn-secondary{ @apply bg-white border border-sky-200 hover:bg-sky-50 text-slate-700 font-medium py-2 px-4 rounded-xl transition-colors; }
+  .card         { @apply bg-white/90 rounded-3xl shadow-md border border-sky-100 p-5 backdrop-blur-sm; }
+  .input        { @apply w-full px-3 py-2 border border-sky-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent text-sm bg-white; }
+}
