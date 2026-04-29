@@ -51,6 +51,18 @@ class Wav2Vec2ForSER(nn.Module):
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f'[AI Server] Device: {device}')
 
+# Télécharger depuis GCS si le modèle n'existe pas localement
+GCS_BUCKET = os.environ.get('GCS_BUCKET', '')
+if GCS_BUCKET and not os.path.exists(MODEL_PATH):
+    print(f'[AI Server] Downloading model from gs://{GCS_BUCKET}/models/wav2vec2_best.pth ...')
+    os.makedirs(os.path.dirname(MODEL_PATH) or '.', exist_ok=True)
+    from google.cloud import storage as gcs
+    client = gcs.Client()
+    bucket = client.bucket(GCS_BUCKET)
+    blob = bucket.blob('models/wav2vec2_best.pth')
+    blob.download_to_filename(MODEL_PATH)
+    print(f'[AI Server] Model downloaded to {MODEL_PATH}')
+
 model = Wav2Vec2ForSER(NUM_CLASSES)
 state = torch.load(MODEL_PATH, map_location=device, weights_only=True)
 model.load_state_dict(state)
